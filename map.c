@@ -311,5 +311,4 @@ void freeMap(t_map *map){
     free(map->soils);
     free(map->costs);
     return;
-
 }

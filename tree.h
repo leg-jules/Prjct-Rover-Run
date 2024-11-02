@@ -14,7 +14,9 @@ typedef struct s_treeNode {
 
 t_treeNode* createNode(int cost);
 void addChild(t_treeNode *parent, t_treeNode *child);
-t_treeNode *minCostWay(t_treeNode *root, int *minCost);
+t_treeNode *minCostWay(t_treeNode *root, int *minCost){
+
+}
 void freeTree(t_treeNode *root);
 
 #endif //UNTITLED1_TREE_H
