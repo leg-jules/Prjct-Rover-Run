@@ -10,6 +10,10 @@
     *  - the origin (x=0, y=0) is at the top left corner
     */
 
+t_orientation rotate(t_orientation, t_move);
+
+t_localisation translate(t_localisation, t_move);
+
 t_orientation rotate(t_orientation ori, t_move move)
 {
     int rst;
@@ -105,3 +109,4 @@ void updateLocalisation(t_localisation *p_loc, t_move m)
     *p_loc = move(*p_loc, m);
     return;
 }
+
