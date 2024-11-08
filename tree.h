@@ -4,13 +4,14 @@
 
 #ifndef UNTITLED1_TREE_H
 #define UNTITLED1_TREE_H
-#define MAX_CHILDREN 9 //pour le moment, à mettre à 9 pour plus tard
+#define MAX_CHILDREN 5 //pour le moment, à mettre à 9 pour plus tard
 
 typedef struct s_node { //noeud
     int value;
     int depth;
     struct s_treeNode **sons[MAX_CHILDREN]; //changer max_children après
     int nbSons;
+    int avails; //tab de possibilité
 } t_node;
 
 typedef struct tree { // arbre
