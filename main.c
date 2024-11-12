@@ -32,5 +32,8 @@ int main() {
         printf("\n");
     }
     displayMap(map);
+
+    freeMap(&map);
+
     return 0;
 }
