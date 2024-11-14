@@ -9,8 +9,7 @@ t_tree createNTree(t_node* node) {
      * @brief fonction récursive qui créée un arbre à partir du noeud racine
      * chaque nouveau étage de noeud possède une nouvelle liste avails qui correspond aux choix possibles
      * @param node : noeud
-     * pour l'instant, les noeuds auront la valeur de l'id mouvement
-     * créer à une depth plus grande que 3 fait cracher l'affichage :((
+     * les noeuds auront la valeur de l'id mouvement
      */
      if (node->depth < 5) {
          int i;

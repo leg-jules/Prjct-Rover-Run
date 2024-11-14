@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include "tree.h"
 
+
+
+
 t_node *createNode(int val, int mvt, int nd_sons, int* list_choix, int depth) {
     t_node *new_node;
     new_node = (t_node *)malloc(sizeof(t_node));
@@ -20,3 +23,4 @@ t_node *createNode(int val, int mvt, int nd_sons, int* list_choix, int depth) {
     }
     return new_node;
 }
+
