@@ -46,7 +46,8 @@ int main() {
     printf("Localisation initialized at:\n");
     printf("   X : %d\n",xPos);
     printf("   Y : %d\n",yPos);
-    printf("   Orientation : %d\n\n",loca.ori);
+    printf("   Orientation: %s\n\n", orientation_names[loca.ori]);
+
 
 
     // test arbre n aire
