@@ -92,7 +92,7 @@ int main() {
     t_node *root = createNode(0,0, 5, avails, 0);
     t_tree myTree = createNTree(root);
 
-    printf("Tree n-ary:\n");
+    printf("Tree n-ary:\n\n");
     printTree(&myTree);
 
     return 0;
