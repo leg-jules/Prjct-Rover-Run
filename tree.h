@@ -22,7 +22,9 @@ typedef struct n_tree {
 } t_tree;
 
 t_tree createNTree(t_node *node); // A modifier : Changer la fonction pour insertIntoNTree
-void printNTree(t_tree tree);
+void printNTree(t_node* , int , int );
+void printTree(t_tree* tree);
+
 
 
 #endif //TREE_H
