@@ -55,14 +55,14 @@ int main() {
     map = createMapFromFile("../maps/example1.map");
 #endif
 
-    printf("Map created with dimensions %d x %d\n", map.y_max, map.x_max);
+    printf("Map created with dimensions %d x %d\n\n", map.y_max, map.x_max);
     for (int i = 0; i < map.y_max; i++)
     {
         for (int j = 0; j < map.x_max; j++)
         {
             printf("%d ", map.soils[i][j]);
         }
-        printf("\n");
+        printf("\n\n");
     }
     // printf the costs, aligned left 5 digits
     for (int i = 0; i < map.y_max; i++)
@@ -71,9 +71,10 @@ int main() {
         {
             printf("%-5d ", map.costs[i][j]);
         }
-        printf("\n");
+        printf("\n\n");
     }
     displayMap(map);
+    printf("\n\n");
 
     // randomisation position du robot init
     srand(time(NULL));
@@ -92,7 +93,7 @@ int main() {
     t_node *root = createNode(0,0, 5, avails, 0);
     t_tree myTree = createNTree(root);
 
-    printf("Tree n-ary:\n\n");
+    printf("Tree n-ary:\n");
     printTree(&myTree);
 
     return 0;
