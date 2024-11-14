@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+
+#include "loc.h"
 #include "map.h"
 #include "tree.h"
 
@@ -33,15 +36,22 @@ int main() {
         printf("\n");
     }
     displayMap(map);
-    return 0;
 
-    // -----TEST------------------------------------------------------------------
+    // randomisation position du robot init
+    int xPos = rand() % map.x_max;
+    int yPos = rand() % map.y_max;
+    t_localisation loca = loc_init(xPos, yPos, (rand() % 4));
+
+
+    // test arbre n aire
     int avails[5] = {1,2,3,4,5};
     t_node *root = createNode(0,0, 5, avails, 0);
-    t_tree mytree = createNTree(root);
+    t_tree myTree = createNTree(root);
 
-    // Affichage de l'arbre
     printf("Arbre n-aire:\n");
-    printNTree(mytree);
+    printNTree(myTree);
+
+
+    return 0;
 
 }
