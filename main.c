@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include "map.h"
+#include "tree.h"
+
 
 int main() {
     t_map map;
+    t_tree tree;
 
     // The following preprocessor directive checks if the code is being compiled on a Windows system.
     // If either _WIN32 or _WIN64 is defined, it means we are on a Windows platform.
@@ -32,8 +35,20 @@ int main() {
         printf("\n");
     }
     displayMap(map);
+    //freeMap(&map); pour les future map généré dynamiquement
 
-    freeMap(&map);
+    //--------------------------------------------------
+    int list1[] = {1,2,3,4,5,6,7,8,9};
+//    t_mov ] = {F_10,F_20,F_30,B_10,T_LEFT,T_RIGHT,U_TURN};
+    int *node1 = createNode(10,2,2,list1);
+    createNTree(node1);
+    printNTree(tree);
+    freeTree(&tree);
+    freeNode(node1);
+
+    //--------------------------------------------------
+
 
     return 0;
 }
+
