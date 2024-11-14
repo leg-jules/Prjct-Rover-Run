@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "loc.h"
 #include "map.h"
@@ -38,9 +39,14 @@ int main() {
     displayMap(map);
 
     // randomisation position du robot init
+    srand(time(NULL));
     int xPos = rand() % map.x_max;
     int yPos = rand() % map.y_max;
-    t_localisation loca = loc_init(xPos, yPos, (rand() % 4));
+    t_localisation loca = loc_init(xPos, yPos, rand() % 4);
+    printf("Localisation initialized at:\n");
+    printf("   X : %d\n",xPos);
+    printf("   Y : %d\n",yPos);
+    printf("   Orientation : %d\n\n",loca.ori);
 
 
     // test arbre n aire
@@ -48,7 +54,7 @@ int main() {
     t_node *root = createNode(0,0, 5, avails, 0);
     t_tree myTree = createNTree(root);
 
-    printf("Arbre n-aire:\n");
+    printf("Tree n-ary:\n");
     printNTree(myTree);
 
 
