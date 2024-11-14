@@ -56,22 +56,25 @@ t_tree createNTree(t_node* node) {
 
 
 
+void printNode(t_node* node, int depth, char* prefix) {
+    if (depth >= 4) return;
+
+    printf("%s", prefix);
+    printf("%s", (depth == 0) ? "" : "|");
+    for (int i = 0; i < depth; i++) {
+        printf("-");
+    }
+    printf(" Valeur du Node %d\n", node->value);
+
+    char new_prefix[256];
+    snprintf(new_prefix, sizeof(new_prefix), "%s%s", prefix, (depth == 0) ? "" : "|   ");
+
+    for (int i = 0; i < node->ndSons; i++) {
+        printNode(node->sons[i], depth + 1, new_prefix);
+    }
+}
+
 void printNTree(t_tree tree) {
     if (tree.root == NULL) return;
-
-    void printNode(t_node* node, int depth, char* prefix) {
-        if (depth >= 3) return;
-
-        printf("%s", prefix);
-        printf("%s", (depth == 0) ? "" : "|-- ");
-        printf("Node value: %d\n", node->value);
-
-        char new_prefix[256];
-        snprintf(new_prefix, sizeof(new_prefix), "%s%s", prefix, (depth == 0) ? "" : "|   ");
-        for (int i = 0; i < node->ndSons; i++) {
-            printNode(node->sons[i], depth + 1, new_prefix);
-        }
-    }
-
     printNode(tree.root, 0, "");
 }
