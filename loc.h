@@ -4,6 +4,10 @@
 
 #ifndef UNTITLED1_LOC_H
 #define UNTITLED1_LOC_H
+#include "map.h"
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 
 /**
  * @brief Enum for the orientation of the robot (NORTH, EAST, SOUTH, WEST)
@@ -84,5 +88,9 @@ t_position UP(t_position);
  * @return the DOWN position
  */
 t_position DOWN(t_position);
+
+t_localisation randLoc(t_map map);
+
+
 
 #endif //UNTITLED1_LOC_H

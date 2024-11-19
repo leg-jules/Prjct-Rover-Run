@@ -49,3 +49,15 @@ t_position DOWN(t_position pos)
     new_pos.y = pos.y + 1;
     return new_pos;
 }
+
+t_localisation randLoc(t_map map)
+{
+    srand(time(NULL));
+    int xPos = rand() % map.x_max;
+    int yPos = rand() % map.y_max;
+    t_localisation loca = loc_init(xPos, yPos, rand() % 4);
+    printf("Localisation initialized at:\n");
+    printf("   X : %d\n",xPos);
+    printf("   Y : %d\n",yPos);
+    printf("   Orientation: %s\n\n", orientation_names[loca.ori]);
+}
