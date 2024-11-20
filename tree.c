@@ -56,43 +56,45 @@ t_tree createNTree(t_node* node) {
 }
 
 
-// Fonction pour afficher l'arbre de manière hiérarchique
-void printNTree(t_node* node, int depth, int isLast)
-{
-    if (node == NULL) return;
+void printNode(t_node* node, int depth, char* prefix) {
+    if (depth >= 4) return;
 
-    // Affichage de l'indentation en fonction de la profondeur
-    for (int i = 1; i < depth; ++i) {
-        if (i == depth - 1 && isLast) {
-            printf("    ");  // Pas de barre verticale si c'est le dernier enfant
-        } else {
-            printf("|   ");  // Affichage de la barre verticale pour les autres enfants
-        }
+    printf("%s", prefix);
+    printf("%s", (depth == 0) ? "" : "|");
+    for (int i = 0; i < depth; i++) {
+        printf("-");
     }
+    printf(" Valeur du Node %d\n", node->value);
 
-    // Affichage du nœud
-    if (depth == 0) {
-        printf("%d\n", node->value);  // Racine sans préfixe spécial
-    } else {
-        if (isLast) {
-            printf("+--- %d\n", node->value);  // Dernier enfant avec un "+---"
-        } else {
-            printf("+--- %d\n", node->value);  // Autres enfants avec un "+---"
-        }
-    }
+    char new_prefix[256];
+    snprintf(new_prefix, sizeof(new_prefix), "%s%s", prefix, (depth == 0) ? "" : "|   ");
 
-    // Parcours récursif des fils
     for (int i = 0; i < node->ndSons; i++) {
-        int isLastChild = (i == node->ndSons - 1); // Vérifie si c'est le dernier fils
-        printNTree(node->sons[i], depth + 1, isLastChild); // Appel récursif pour chaque fils
+        printNode(node->sons[i], depth + 1, new_prefix);
     }
 }
 
+void printNTree(t_tree tree) {
+    if (tree.root == NULL) return;
+    printNode(tree.root, 0, "");
+}
 
-// Fonction pour afficher l'arbre à partir de la racine
-void printTree(t_tree* tree)
-{
-    if (tree != NULL && tree->root != NULL) {
-        printNTree(tree->root, 0, 0); // L'appel initial avec la racine
+void findMinCostPath(t_node *node, int current_cost, int *min_cost, t_node **min_path, int *path_length, t_node **current_path, t_move *current_moves, int depth) {
+    if (node == NULL) { return; }
+
+    current_cost += node->value;
+    current_path[depth] = node;
+
+    if (node->ndSons == 0) {
+        if (current_cost < *min_cost) {
+            *min_cost = current_cost;
+            *min_path = node;
+            *path_length = depth + 1;
+        }
+    }
+
+    for (int i = 0; i < node->ndSons; i++) {
+        current_moves[depth] = node->avails[i];  // Record move leading to child
+        findMinCostPath(node->sons[i], current_cost, min_cost, min_path, path_length, current_path, current_moves,depth + 1);
     }
 }

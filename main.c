@@ -94,7 +94,7 @@ int main() {
     t_tree myTree = createNTree(root);
 
     printf("Tree n-ary:\n");
-    printTree(&myTree);
+    printNTree(myTree);
 
     return 0;
 

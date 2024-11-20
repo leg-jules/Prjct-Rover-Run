@@ -1,6 +1,7 @@
 
 #ifndef TREE_H
 #define TREE_H
+#include "moves.h"
 
 typedef struct s_node
 {
@@ -22,8 +23,8 @@ typedef struct n_tree {
 } t_tree;
 
 t_tree createNTree(t_node *node); // A modifier : Changer la fonction pour insertIntoNTree
-void printNTree(t_node* , int , int );
-void printTree(t_tree* tree);
+void printNTree(t_tree tree);
+void findMinCostPath(t_node* node, int current_cost, int* min_cost, t_node** min_path, int* path_length, t_node** current_path, t_move* current_moves, int depth);
 
 
 
