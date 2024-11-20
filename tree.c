@@ -94,7 +94,7 @@ void findMinCostPath(t_node *node, int current_cost, int *min_cost, t_node **min
     }
 
     for (int i = 0; i < node->ndSons; i++) {
-        current_moves[depth] = node->avails[i];  // Record move leading to child
+        current_moves[depth] = node->avails[i];
         findMinCostPath(node->sons[i], current_cost, min_cost, min_path, path_length, current_path, current_moves,depth + 1);
     }
 }
