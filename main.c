@@ -57,6 +57,7 @@ int main() {
 
     printf("Tree n-ary:\n");
     printNTree(myTree);
+    minimumNode(myTree);
 
 
     return 0;

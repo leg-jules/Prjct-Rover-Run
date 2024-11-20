@@ -1,6 +1,7 @@
 #include "tree.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <limits.h>
 
 int *removeFromList(int *list, int val, int len_list){
 
@@ -93,3 +94,34 @@ void printNTree(t_tree tree) {
     printNode(tree.root, 0, "");
 }
 
+
+
+//TROUVER VALEUR DU NODE MINIMUM DANS L'ARBRE POUR SAVOIR SI LA BASE ETE ATTEINTE
+
+t_node* findMinimumNode(t_node* node) {
+    if (node == NULL) return NULL;
+
+    t_node* min_node = node;
+
+    for (int i = 0; i < node->ndSons; i++) {
+        t_node* child_min_node = findMinimumNode(node->sons[i]);
+        if (child_min_node != NULL && child_min_node->value < min_node->value) {
+            min_node = child_min_node;
+        }
+    }
+
+    return min_node;
+}
+
+void minimumNode(t_tree tree) {
+    if (tree.root == NULL) {
+        printf("L'arbre est vide\n");
+        return;
+    }
+    t_node* min_node = findMinimumNode(tree.root);
+    if (min_node != NULL) {
+        printf("La valeur minimale de l'arbre : %d\n", min_node->value);
+    } else {
+        printf("L'arbre est vide\n");
+    }
+}
