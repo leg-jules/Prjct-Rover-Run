@@ -2,6 +2,11 @@
 // Created by flasque on 19/10/2024.
 //
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include "map.h"
+
 #ifndef UNTITLED1_LOC_H
 #define UNTITLED1_LOC_H
 
@@ -84,5 +89,8 @@ t_position UP(t_position);
  * @return the DOWN position
  */
 t_position DOWN(t_position);
+
+t_localisation randomLoc(t_map map);
+
 
 #endif //UNTITLED1_LOC_H

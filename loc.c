@@ -3,6 +3,10 @@
 //
 
 #include "loc.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
+#include "map.h"
 
 t_localisation loc_init(int x, int y, t_orientation ori)
 {
@@ -50,3 +54,14 @@ t_position DOWN(t_position pos)
     return new_pos;
 }
 
+t_localisation randomLoc(t_map map)
+{
+    srand(time(NULL));
+    int xPos = rand() % map.x_max;
+    int yPos = rand() % map.y_max;
+    t_localisation loca = loc_init(xPos, yPos, rand() % 4);
+    printf("Position initialized at:\n");
+    printf("   X : %d\n",xPos);
+    printf("   Y : %d\n",yPos);
+    printf("   Orientation: %s\n\n", orientation_names[loca.ori]);
+}
