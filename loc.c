@@ -50,3 +50,28 @@ t_position DOWN(t_position pos)
     return new_pos;
 }
 
+char getOriAsString (t_orientation ori)
+{
+    switch (ori)
+    {
+        case NORTH:
+            return 'N';
+        case EAST:
+            return 'E';
+        case SOUTH:
+            return 'S';
+        case WEST:
+            return 'W';
+        default:
+            return '?';
+    }
+}
+
+//randomly update the localisation of the robot
+t_localisation randomLoc(t_map map){
+    srand(time(NULL));
+    int xPos = rand() % map.x_max;
+    int yPos = rand() % map.y_max;
+    t_localisation loca = loc_init(xPos, yPos, rand() % 4);
+    return loca;
+}
