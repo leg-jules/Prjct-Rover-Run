@@ -64,7 +64,7 @@ void printNode(t_node* node, int depth, char* prefix) {
     for (int i = 0; i < depth; i++) {
         printf("-");
     }
-    printf(" Valeur du Node %d\n", node->value);
+    printf(" Valeur : %d | ori : %c \n", node->value, getOriAsString(node->loc.ori));
 
     char new_prefix[256];
     snprintf(new_prefix, sizeof(new_prefix), "%s%s", prefix, (depth == 0) ? "" : "|   ");
@@ -78,6 +78,7 @@ void printNTree(t_tree tree) {
     if (tree.root == NULL) return;
     printNode(tree.root, 0, "");
 }
+
 
 void findMinCostPath(t_node *node, int current_cost, int *min_cost, t_node **min_path, int *path_length, t_node **current_path, t_move *current_moves, int depth) {
     if (node == NULL) { return; }

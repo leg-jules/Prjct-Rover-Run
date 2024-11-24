@@ -34,6 +34,8 @@ typedef enum e_move
  */
 char *getMoveAsString(t_move move);
 
+
+
 /**
  * @brief function to update the localisation of the robot according to a move
  * @param loc : the localisation of the robot
