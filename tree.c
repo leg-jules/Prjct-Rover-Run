@@ -79,6 +79,21 @@ void printNTree(t_tree tree) {
     printNode(tree.root, 0, "");
 }
 
+void exploreNTree(t_tree tree) {
+    t_node *currentNode = tree.root;
+    if (currentNode == NULL) {
+        return;
+    }
+    printf("Valeur: %d ; Profondeur: %d \n", currentNode->value, currentNode->depth);
+    for (int i = 0; i < currentNode->ndSons; i++) {
+        if (currentNode->sons[i] != NULL) {
+            t_tree subTree;
+            subTree.root = currentNode->sons[i];
+            exploreNTree(subTree);
+        }
+    }
+}
+
 void findMinCostPath(t_node *node, int current_cost, int *min_cost, t_node **min_path, int *path_length, t_node **current_path, t_move *current_moves, int depth) {
     if (node == NULL) { return; }
 
