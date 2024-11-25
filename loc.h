@@ -4,7 +4,11 @@
 
 #ifndef UNTITLED1_LOC_H
 #define UNTITLED1_LOC_H
-
+#include "time.h"
+#include "stdlib.h"
+#include "stdio.h"
+//#include "moves.h"
+#include "map.h"
 /**
  * @brief Enum for the orientation of the robot (NORTH, EAST, SOUTH, WEST)
  */
@@ -84,5 +88,10 @@ t_position UP(t_position);
  * @return the DOWN position
  */
 t_position DOWN(t_position);
+
+char getOriAsString (t_orientation ori);
+
+t_localisation randomLoc(t_map map);
+
 
 #endif //UNTITLED1_LOC_H

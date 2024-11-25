@@ -2,15 +2,20 @@
 #ifndef TREE_H
 #define TREE_H
 #include "moves.h"
+#include "loc.h"
+
 
 typedef struct s_node
 {
     int value;
     int id_mouvement;
     int depth;
+    t_move move;
     struct s_node **sons; //tableau de pointeur
     int ndSons; //taille physique du tableau
-    int *avails; //choix restants du noeud
+    t_move *avails; //choix restants du noeud
+    t_localisation loc;
+    struct s_node *parent;
 }t_node;
 
 int *removeFromList(int*, int, int);
