@@ -178,3 +178,13 @@ t_localisation randomLoc(t_map map)
     printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, &orientation_names[loc.ori]);
     return loc;
 }
+
+int isOnCrevasse(t_localisation loc, t_map map) {
+    if (map.soils[loc.pos.y][loc.pos.x] == CREVASSE) {
+        printf("Robot is on a crevasse\n");
+        return 1;
+    } else {
+        printf("Robot is not on a crevasse\n");
+        return 0;
+    }
+}
