@@ -8,6 +8,7 @@
 
 int main() {
     t_map map;
+    t_map map1 = createRandomMap(6,7);
     srand(time(NULL));
 
 
@@ -30,18 +31,18 @@ int main() {
         printf("\n");
     }
     // printf the costs, aligned left 5 digits
-    for (int i = 0; i < map.y_max; i++)
+    for (int i = 0; i < map1.y_max; i++)
     {
-        for (int j = 0; j < map.x_max; j++)
+        for (int j = 0; j < map1.x_max; j++)
         {
-            printf("%-5d ", map.costs[i][j]);
+            printf("%-5d ", map1.costs[i][j]);
         }
         printf("\n");
     }
-    displayMap(map);
+    displayMap(map1);
 
     // randomisation position du robot init
-    t_localisation loc = randomLoc(map);
+    t_localisation loc = randomLoc(map1);
     // test arbre n aire
     int avails[5] = {1,2,3,4,5};
     t_node *root = createNode(0,0, 5, avails, 0);
@@ -49,15 +50,14 @@ int main() {
     root->loc.ori = loc.ori;
     root->loc.pos = loc.pos;
 
-    t_tree myTree = createNTree(root, 5, loc, map);
+    t_tree myTree = createNTree(root, 5, loc, map1);
 
     printf("Tree n-ary:\n");
     printNTree(root, 0);
 //    minimumNode(myTree);
 
-    isOnBaseStation(loc, map);
+    isOnBaseStation(loc, map1);
 
-    t_map map1 = createRandomMap(6, 7);
 
     printf("\n");
 
