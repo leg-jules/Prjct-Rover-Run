@@ -3,8 +3,8 @@
 //
 
 #include "loc.h"
-#include <stdlib.h>
-#include <time.h>
+#include <stdio.h>
+
 
 t_localisation loc_init(int x, int y, t_orientation ori)
 {
@@ -68,6 +68,4 @@ char getOriAsString (t_orientation ori)
             return 'X';
     }
 }
-
-
 

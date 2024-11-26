@@ -65,6 +65,10 @@ void isOutOfMap(t_localisation loc, t_map map);
 
 t_map createRandomMap(int x_max, int y_max);
 
+t_localisation randomLoc(t_map map);
+
 void freeMap(t_map map);
+
+
 
 #endif //UNTITLED1_MAP_H

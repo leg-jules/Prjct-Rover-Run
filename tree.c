@@ -33,7 +33,7 @@ t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth) {
     return new_node;
 }
 
-t_tree createNTree(t_node* node, int size, t_localisation loc, t_map map) {
+t_tree createNTree(t_node* node, int depth, t_localisation loc, t_map map) {
     if (node->depth < 5) {
         int i;
         for (i = 0; i < node->ndSons; i++) {
@@ -55,12 +55,12 @@ t_tree createNTree(t_node* node, int size, t_localisation loc, t_map map) {
 void printNode(t_node* node, int depth, char* prefix) {
     if (depth >= 4) return;
 
-    printf("%s", prefix);
-    printf("%s", (depth == 0) ? "" : "|");
+        printf("%s", prefix);
+        printf("%s", (depth == 0) ? "" : "|");
     for (int i = 0; i < depth; i++) {
         printf("-");
-    }
-    printf(" Valeur %d | tation \n", node->value);
+        }
+        printf(" Valeur %d | tation %s\n", node->value, getMoveAsString(node->move));
 
     char new_prefix[256];
     int index = 0;

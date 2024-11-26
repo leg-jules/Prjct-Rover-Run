@@ -53,16 +53,15 @@ int main() {
     t_tree myTree = createNTree(root, 5, loc, map1);
 
     printf("Tree n-ary:\n");
-    printNTree(root, 0);
+//    printNTree(root, 0);
 //    minimumNode(myTree);
 
     isOnBaseStation(loc, map1);
-
-
     printf("\n");
 
     displayMap(map1);
     freeMap(map1);
+    isOutOfMap(loc, map1);
 
     return 0;
 

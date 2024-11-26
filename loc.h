@@ -8,6 +8,7 @@
 /**
  * @brief Enum for the orientation of the robot (NORTH, EAST, SOUTH, WEST)
  */
+
 typedef enum e_orientation
 {
     NORTH,

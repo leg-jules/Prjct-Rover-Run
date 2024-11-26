@@ -30,7 +30,7 @@ typedef struct n_tree {
     t_node *root;
 } t_tree;
 
-t_tree createNTree(t_node *node, int size, t_localisation loc,
+t_tree createNTree(t_node *node,int depth, t_localisation loc,
                        t_map); // A modifier : Changer la fonction pour insertIntoNTree
 //void printNTree(t_tree tree);
 void addChild(t_node *parent, t_node *child);

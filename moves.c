@@ -4,6 +4,7 @@
 
 #include "moves.h"
 
+
 /* prototypes of local functions */
 /* local functions are used only in this file, as helper functions */
 
@@ -133,7 +134,7 @@ t_localisation translate(t_localisation loc, t_move move)
 
 }
 
-/* definitions of exported functions */
+ /* definition of exported functions */
 
 char *getMoveAsString(t_move move)
 {
@@ -169,15 +170,7 @@ int isOnBaseStation(t_localisation loc, t_map map)
     return 0;
 }
 
-t_localisation randomLoc(t_map map)
-{
-    t_localisation loc;
-    loc.pos.x = rand() % map.x_max;
-    loc.pos.y = rand() % map.y_max;
-    loc.ori = rand() % 4;
-    printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, &orientation_names[loc.ori]);
-    return loc;
-}
+
 
 int isOnCrevasse(t_localisation loc, t_map map) {
     if (map.soils[loc.pos.y][loc.pos.x] == CREVASSE) {
