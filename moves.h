@@ -54,7 +54,7 @@ char *getMoveAsString(t_move move);
 //void updateLocalisation(t_localisation *, t_move);
 
 int isOnBaseStation(t_localisation loc, t_map map);
-
+int isOnCrevasse(t_localisation loc, t_map map);
 t_localisation randomLoc(t_map map);
 
 
