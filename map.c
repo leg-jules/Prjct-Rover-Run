@@ -309,15 +309,12 @@ t_map createRandomMap(int x_max, int y_max) {
 
     srand(time(NULL));
 
-    // Remplir la map avec des valeurs randoms
+    // Remplir la carte avec des valeurs aléatoires, excluant la station de base
     for (int i = 0; i < y_max; i++) {
         for (int j = 0; j < x_max; j++) {
-            int soil_type = rand() % 5; // les random soil sont entre 0 et 4
+            int soil_type = rand() % 4 + 1; // Type de sol aléatoire entre 1 et 4
             map.soils[i][j] = soil_type;
             switch (soil_type) {
-                case BASE_STATION:
-                    map.costs[i][j] = 0;
-                    break;
                 case PLAIN:
                     map.costs[i][j] = 1;
                     break;
@@ -337,7 +334,7 @@ t_map createRandomMap(int x_max, int y_max) {
         }
     }
 
-    // Placer exactement 1 seule base
+    // Placer exactement une station de base
     int base_x = rand() % x_max;
     int base_y = rand() % y_max;
     map.soils[base_y][base_x] = BASE_STATION;

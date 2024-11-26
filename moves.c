@@ -175,7 +175,7 @@ t_localisation randomLoc(t_map map)
     loc.pos.x = rand() % map.x_max;
     loc.pos.y = rand() % map.y_max;
     loc.ori = rand() % 4;
-    printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, &orientation_names[loc.ori]);
+    printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, orientation_names[loc.ori]);
     return loc;
 }
 
