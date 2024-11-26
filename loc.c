@@ -52,4 +52,22 @@ t_position DOWN(t_position pos)
     return new_pos;
 }
 
+char getOriAsString (t_orientation ori)
+{
+    switch (ori)
+    {
+        case NORTH:
+            return 'N';
+        case EAST:
+            return 'E';
+        case SOUTH:
+            return 'S';
+        case WEST:
+            return 'W';
+        default:
+            return 'X';
+    }
+}
+
+
 
