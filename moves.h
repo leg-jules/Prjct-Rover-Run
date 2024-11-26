@@ -57,5 +57,6 @@ int isOnBaseStation(t_localisation loc, t_map map);
 
 t_localisation randomLoc(t_map map);
 
+void spawnRobotOnBaseStation(t_localisation *loc, t_map map);
 
 #endif //UNTITLED1_MOVES_H

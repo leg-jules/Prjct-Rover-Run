@@ -178,3 +178,17 @@ t_localisation randomLoc(t_map map)
     printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, &orientation_names[loc.ori]);
     return loc;
 }
+
+void spawnRobotOnBaseStation(t_localisation *loc, t_map map)
+{
+    loc->pos.x = rand() % map.x_max;
+    loc->pos.y = rand() % map.y_max;
+    loc->ori = rand() % 4;
+    while(map.soils[loc->pos.y][loc->pos.x] != BASE_STATION)
+    {
+        loc->pos.x = rand() % map.x_max;
+        loc->pos.y = rand() % map.y_max;
+    }
+    printf("Robot spawned on base station: x=%d, y=%d, ori=%s\n", loc->pos.x, loc->pos.y, &orientation_names[loc->ori]);
+    return;
+}
