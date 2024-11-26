@@ -85,6 +85,6 @@ t_position UP(t_position);
  */
 t_position DOWN(t_position);
 
-
+char getOriAsString (t_orientation ori);
 
 #endif //UNTITLED1_LOC_H
