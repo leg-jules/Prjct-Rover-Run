@@ -2,12 +2,7 @@
 // Created by flasque on 19/10/2024.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "map.h"
-#include "loc.h"
-#include "queue.h"
 
 /* prototypes of local functions */
 /* local functions are used only in this file, as helper functions */
@@ -289,9 +284,6 @@ void displayMap(t_map map)
                     case CREVASSE:
                         sprintf(c, "%c%c%c",219,219,219);
                         break;
-                    default:
-                        strcpy(c, "???");
-                        break;
                 }
                 printf("%s", c);
             }
@@ -299,5 +291,53 @@ void displayMap(t_map map)
         }
 
     }
+    return;
+}
+
+t_map createRandomMap(int x_max, int y_max) {
+    t_map map;
+    map.x_max = x_max;
+    map.y_max = y_max;
+
+    // Allocate memory for soils and costs
+    map.soils = (int **)malloc(y_max * sizeof(int *));
+    map.costs = (int **)malloc(y_max * sizeof(int *));
+    for (int i = 0; i < y_max; i++) {
+        map.soils[i] = (int *)malloc(x_max * sizeof(int));
+        map.costs[i] = (int *)malloc(x_max * sizeof(int));
+    }
+
+    // Seed the random number generator
+    srand(time(NULL));
+
+    // Fill the map with random values
+    for (int i = 0; i < y_max; i++) {
+        for (int j = 0; j < x_max; j++) {
+            map.soils[i][j] = rand() % 4 + 1; // Random soil type between 1 and 4
+            map.costs[i][j] = rand() % 100 + 1; // Random cost between 1 and 100
+        }
+    }
+
+    // Place exactly one base station
+    int base_x = rand() % x_max;
+    int base_y = rand() % y_max;
+
+    // Clear previous content in the selected location
+    map.soils[base_y][base_x] = BASE_STATION; // Ensure only one base station
+    map.costs[base_y][base_x] = 0;
+
+    return map;
+}
+
+void freeMap(t_map map)
+{
+    for (int i = 0; i < map.y_max; i++)
+    {
+        free(map.soils[i]);
+        free(map.costs[i]);
+    }
+    free(map.soils);
+    free(map.costs);
+    printf("Map freed\n");
     return;
 }

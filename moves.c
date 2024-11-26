@@ -153,3 +153,28 @@ void updateLocalisation(t_localisation *p_loc, t_move m)
     *p_loc = move(*p_loc, m);
     return;
 }
+
+int isOnBaseStation(t_localisation loc, t_map map)
+{
+    if(map.soils[loc.pos.y][loc.pos.x] == BASE_STATION)
+    {
+        printf("Robot is on base station\n");
+        return 1;
+    }
+    else
+    {
+        printf("Robot is not on base station\n");
+        return 0;
+    }
+    return 0;
+}
+
+t_localisation randomLoc(t_map map)
+{
+    t_localisation loc;
+    loc.pos.x = rand() % map.x_max;
+    loc.pos.y = rand() % map.y_max;
+    loc.ori = rand() % 4;
+    printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, &orientation_names[loc.ori]);
+    return loc;
+}

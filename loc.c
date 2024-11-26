@@ -3,6 +3,8 @@
 //
 
 #include "loc.h"
+#include <stdlib.h>
+#include <time.h>
 
 t_localisation loc_init(int x, int y, t_orientation ori)
 {
@@ -49,3 +51,5 @@ t_position DOWN(t_position pos)
     new_pos.y = pos.y + 1;
     return new_pos;
 }
+
+

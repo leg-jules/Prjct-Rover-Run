@@ -8,6 +8,8 @@
 
 int main() {
     t_map map;
+    srand(time(NULL));
+
 
     // The following preprocessor directive checks if the code is being compiled on a Windows system.
     // If either _WIN32 or _WIN64 is defined, it means we are on a Windows platform.
@@ -39,26 +41,28 @@ int main() {
     displayMap(map);
 
     // randomisation position du robot init
-    srand(time(NULL));
-    int xPos = rand() % map.x_max;
-    int yPos = rand() % map.y_max;
-    t_localisation loca = loc_init(xPos, yPos, rand() % 4);
-    printf("Localisation initialized at:\n");
-    printf("   X : %d\n",xPos);
-    printf("   Y : %d\n",yPos);
-    printf("   Orientation: %s\n\n", orientation_names[loca.ori]);
-
-
-
+    t_localisation loc = randomLoc(map);
     // test arbre n aire
     int avails[5] = {1,2,3,4,5};
     t_node *root = createNode(0,0, 5, avails, 0);
-    t_tree myTree = createNTree(root);
+
+    root->loc.ori = loc.ori;
+    root->loc.pos = loc.pos;
+
+    t_tree myTree = createNTree(root, 5, loc, map);
 
     printf("Tree n-ary:\n");
-    printNTree(myTree);
-    minimumNode(myTree);
+    printNTree(root, 0);
+//    minimumNode(myTree);
 
+    isOnBaseStation(loc, map);
+
+    t_map map1 = createRandomMap(6, 7);
+
+    printf("\n");
+
+    displayMap(map1);
+    freeMap(map1);
 
     return 0;
 

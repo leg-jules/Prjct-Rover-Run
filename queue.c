@@ -2,8 +2,7 @@
 // Created by flasque on 19/10/2024.
 //
 
-#include <assert.h>
-#include <stdlib.h>
+
 #include "queue.h"
 
 /**

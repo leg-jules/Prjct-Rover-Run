@@ -5,6 +5,12 @@
 #ifndef UNTITLED1_MAP_H
 #define UNTITLED1_MAP_H
 
+#include "queue.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
 #define COST_UNDEF 65535
 /**
  * @brief Enum for the possible soils of the map
@@ -54,5 +60,11 @@ t_map createMapFromFile(char *);
  * @param map : the map to display
  */
 void displayMap(t_map);
+
+void isOutOfMap(t_localisation loc, t_map map);
+
+t_map createRandomMap(int x_max, int y_max);
+
+void freeMap(t_map map);
 
 #endif //UNTITLED1_MAP_H
