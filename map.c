@@ -299,7 +299,7 @@ t_map createRandomMap(int x_max, int y_max) {
     map.x_max = x_max;
     map.y_max = y_max;
 
-    // Allocate memory for soils and costs
+    // allouer de la mémoire pour les soils et costs
     map.soils = (int **)malloc(y_max * sizeof(int *));
     map.costs = (int **)malloc(y_max * sizeof(int *));
     for (int i = 0; i < y_max; i++) {
@@ -307,13 +307,12 @@ t_map createRandomMap(int x_max, int y_max) {
         map.costs[i] = (int *)malloc(x_max * sizeof(int));
     }
 
-    // Seed the random number generator
     srand(time(NULL));
 
-    // Fill the map with random values
+    // Remplir la map avec des valeurs randoms
     for (int i = 0; i < y_max; i++) {
         for (int j = 0; j < x_max; j++) {
-            int soil_type = rand() % 5; // Random soil type between 0 and 4
+            int soil_type = rand() % 5; // les random soil sont entre 0 et 4
             map.soils[i][j] = soil_type;
             switch (soil_type) {
                 case BASE_STATION:
@@ -338,7 +337,7 @@ t_map createRandomMap(int x_max, int y_max) {
         }
     }
 
-    // Place exactly one base station
+    // Placer exactement 1 seule base
     int base_x = rand() % x_max;
     int base_y = rand() % y_max;
     map.soils[base_y][base_x] = BASE_STATION;
