@@ -13,7 +13,6 @@ typedef struct s_node
     int value;
     int id_mouvement;
     int depth;
-    t_move move;
     struct s_node **sons; //tableau de pointeur
     int ndSons; //taille physique du tableau
     t_move *avails; //choix restants du noeud
@@ -23,7 +22,7 @@ typedef struct s_node
 }t_node;
 
 t_move *removeFromList(int *list, t_move value, int len_list);
-t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth);
+t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_localisation loc);
 
 
 typedef struct n_tree {

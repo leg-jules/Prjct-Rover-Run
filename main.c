@@ -45,7 +45,7 @@ int main() {
     t_localisation loc = randomLoc(map1);
     // test arbre n aire
     int avails[5] = {1,2,3,4,5};
-    t_node *root = createNode(0,0, 5, avails, 0);
+    t_node *root = createNode(0,0, 5, avails, 0, loc);
 
     root->loc.ori = loc.ori;
     root->loc.pos = loc.pos;
@@ -53,7 +53,7 @@ int main() {
     t_tree myTree = createNTree(root, 5, loc, map1);
 
     printf("Tree n-ary:\n");
-//    printNTree(root, 0);
+    printNTree(root, 0);
 //    minimumNode(myTree);
 
     isOnBaseStation(loc, map1);

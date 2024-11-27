@@ -15,7 +15,7 @@ t_move *removeFromList(int *list, t_move value, int len_list){
     return new_list;
 }
 
-t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth) {
+t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_localisation loc){
     t_node *new_node;
     new_node = (t_node *)malloc(sizeof(t_node));
 
@@ -26,6 +26,7 @@ t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth) {
     t_move *new_avails = removeFromList(avails, val, nd_sons);//on enlève le mouvement du noeud actuel (son id_mouvement) à sa liste
     new_node->avails = new_avails; //tous les choix possibles qui dépend du noeud parent de ce nouveau noeud (si noeud = racine, initialisation du robot, liste complète)
     new_node->depth = depth;
+    new_node->loc = loc;
 
     for(int i = 0; i < nd_sons; i++){
         new_node->sons[i]=NULL;
@@ -34,11 +35,30 @@ t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth) {
 }
 
 t_tree createNTree(t_node* node, int depth, t_localisation loc, t_map map) {
+    if(node == NULL){
+        printf("Node is NULL\n");
+    };
     if (node->depth < 5) {
-        int i;
-        for (i = 0; i < node->ndSons; i++) {
+        for (int i = 0; i < node->ndSons; i++) {
+            t_localisation new_loc = loc;
+            switch (node->avails[i]) {
+                case F_10:
+                    break;
+                case F_20:
+                    break;
+                case F_30:
+                    break;
+                case B_10:
+                    break;
+                case T_LEFT:
+                    break;
+                case T_RIGHT:
+                    break;
+                case U_TURN:
+                    break;
+            }
             t_move *new_avails = removeFromList(node->avails, node->avails[i], node->ndSons);
-            t_node *new_son = createNode(node->avails[i], node->avails[i], node->ndSons - 1 , new_avails, node->depth + 1);
+            t_node *new_son = createNode(node->avails[i], node->avails[i], node->ndSons - 1 , new_avails, node->depth + 1, loc);
             node->sons[i] = new_son;
             createNTree(new_son, node->depth + 1, loc, map);
         }
@@ -55,29 +75,17 @@ t_tree createNTree(t_node* node, int depth, t_localisation loc, t_map map) {
 void printNode(t_node* node, int depth, char* prefix) {
     if (depth >= 4) return;
 
-        printf("%s", prefix);
-        printf("%s", (depth == 0) ? "" : "|");
+    printf("%s", prefix);
+    printf("%s", (depth == 0) ? "" : "|");
     for (int i = 0; i < depth; i++) {
         printf("-");
-        }
-        printf(" Valeur %d | tation %s\n", node->value, getMoveAsString(node->move));
+    }
+    printf(" Valeur : %d | Position : (%d, %d) | Orientation : %c \n",
+           node->value, node->loc.pos.x, node->loc.pos.y, getOriAsString(node->loc.ori));
+
 
     char new_prefix[256];
-    int index = 0;
-
-
-    for (int i = 0; prefix[i] != '\0'; i++) {
-        new_prefix[index++] = prefix[i];
-    }
-
-    if (depth != 0) {
-        new_prefix[index++] = '|';
-        new_prefix[index++] = ' ';
-        new_prefix[index++] = ' ';
-        new_prefix[index++] = ' ';
-    }
-
-    new_prefix[index] = '\0';
+    snprintf(new_prefix, sizeof(new_prefix), "%s%s", prefix, (depth == 0) ? "" : "|   ");
 
     for (int i = 0; i < node->ndSons; i++) {
         printNode(node->sons[i], depth + 1, new_prefix);
@@ -87,8 +95,6 @@ void printNode(t_node* node, int depth, char* prefix) {
 void printNTree(t_node *node, int depth) {
     printNode(node, depth, "");
 }
-
-
 
 //TROUVER VALEUR DU NODE MINIMUM DANS L'ARBRE POUR SAVOIR SI LA BASE ETE ATTEINTE
 
