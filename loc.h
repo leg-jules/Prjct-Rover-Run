@@ -8,6 +8,7 @@
 /**
  * @brief Enum for the orientation of the robot (NORTH, EAST, SOUTH, WEST)
  */
+
 typedef enum e_orientation
 {
     NORTH,
@@ -15,6 +16,11 @@ typedef enum e_orientation
     SOUTH,
     WEST
 } t_orientation;
+
+/**
+ * @brief Array of char for the possible orientation of the robot
+ */
+static char* orientation_names[] = { "NORTH", "EAST", "SOUTH", "WEST" };
 
 /**
  * @brief Structure for the position of the robot
@@ -79,5 +85,7 @@ t_position UP(t_position);
  * @return the DOWN position
  */
 t_position DOWN(t_position);
+
+char getOriAsString (t_orientation ori);
 
 #endif //UNTITLED1_LOC_H

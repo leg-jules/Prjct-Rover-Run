@@ -2,12 +2,7 @@
 // Created by flasque on 19/10/2024.
 //
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include "map.h"
-#include "loc.h"
-#include "queue.h"
 
 /* prototypes of local functions */
 /* local functions are used only in this file, as helper functions */
@@ -289,9 +284,6 @@ void displayMap(t_map map)
                     case CREVASSE:
                         sprintf(c, "%c%c%c",219,219,219);
                         break;
-                    default:
-                        strcpy(c, "???");
-                        break;
                 }
                 printf("%s", c);
             }
@@ -302,13 +294,87 @@ void displayMap(t_map map)
     return;
 }
 
-void freeMap(t_map *map){
-    for (int i = 0; i < map->y_max; i++)
-    {
-        free(map->soils[i]);
-        free(map->costs[i]);
+t_map createRandomMap(int x_max, int y_max) {
+    t_map map;
+    map.x_max = x_max;
+    map.y_max = y_max;
+
+    // allouer de la mémoire pour les soils et costs
+    map.soils = (int **)malloc(y_max * sizeof(int *));
+    map.costs = (int **)malloc(y_max * sizeof(int *));
+    for (int i = 0; i < y_max; i++) {
+        map.soils[i] = (int *)malloc(x_max * sizeof(int));
+        map.costs[i] = (int *)malloc(x_max * sizeof(int));
     }
-    free(map->soils);
-    free(map->costs);
+
+    srand(time(NULL));
+
+    // Remplir la carte avec des valeurs aléatoires, excluant la station de base
+    for (int i = 0; i < y_max; i++) {
+        for (int j = 0; j < x_max; j++) {
+            int soil_type = rand() % 4 + 1; // Type de sol aléatoire entre 1 et 4
+            map.soils[i][j] = soil_type;
+            switch (soil_type) {
+                case PLAIN:
+                    map.costs[i][j] = 1;
+                    break;
+                case ERG:
+                    map.costs[i][j] = 2;
+                    break;
+                case REG:
+                    map.costs[i][j] = 4;
+                    break;
+                case CREVASSE:
+                    map.costs[i][j] = 10000;
+                    break;
+                default:
+                    map.costs[i][j] = 1;
+                    break;
+            }
+        }
+    }
+
+    // Placer exactement une station de base
+    int base_x = rand() % x_max;
+    int base_y = rand() % y_max;
+    map.soils[base_y][base_x] = BASE_STATION;
+    map.costs[base_y][base_x] = 0;
+
+    return map;
+}
+
+void freeMap(t_map map)
+{
+    for (int i = 0; i < map.y_max; i++)
+    {
+        free(map.soils[i]);
+        free(map.costs[i]);
+    }
+    free(map.soils);
+    free(map.costs);
+    printf("Map freed\n");
+    return;
+}
+
+t_localisation randomLoc(t_map map)
+{
+    t_localisation loc;
+    loc.pos.x = rand() % map.x_max;
+    loc.pos.y = rand() % map.y_max;
+    loc.ori = rand() % 4;
+    printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, orientation_names[loc.ori]);
+    return loc;
+}
+
+void isOutOfMap(t_localisation loc, t_map map)
+{
+    if (loc.pos.x < 0 || loc.pos.x >= map.x_max || loc.pos.y < 0 || loc.pos.y >= map.y_max)
+    {
+        printf("Robot is out of map\n");
+    }
+    else
+    {
+        printf("Robot is in the map\n");
+    }
     return;
 }

@@ -1,39 +1,44 @@
-//
-// Created by legal on 01/11/2024.
-//
 
-#ifndef UNTITLED1_TREE_H
-#define UNTITLED1_TREE_H
-#define MAX_CHILDREN 5 //pour le moment, à mettre à 9 pour plus tard
+#ifndef TREE_H
+#define TREE_H
 
-typedef struct s_node { //noeud
+#include "moves.h"
+#include "loc.h"
+#include "map.h"
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct s_node
+{
     int value;
+    int id_mouvement;
     int depth;
-    int nbSons;
-    int availableSons; //tab de possibilité
-    struct s_node **sons; //changer max_children après
-} t_node;
+    struct s_node **sons; //tableau de pointeur
+    int ndSons; //taille physique du tableau
+    t_move *avails; //choix restants du noeud
+    t_localisation loc;
+    struct s_node *parent;
+    int tot_cost;
+}t_node;
 
-typedef struct tree { // arbre
+t_move *removeFromList(int *list, t_move value, int len_list);
+t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_localisation loc);
+
+
+typedef struct n_tree {
     t_node *root;
 } t_tree;
 
-////fonctions de noeud
+t_tree createNTree(t_node *node,int depth, t_localisation loc,
+                       t_map); // A modifier : Changer la fonction pour insertIntoNTree
+//void printNTree(t_tree tree);
+void addChild(t_node *parent, t_node *child);
 
-t_node* createNode(int value, int depth, int nbSons);
+void printNTree(t_node *node, int level);
 
-void freeNode(t_node *root);
-//void addChild(t_node *parent, t_node *child);
-//t_node *minCostWay(t_node *root, int *minCost);
-//t_node printNode(t_node node);
+void exploreNTree(t_tree tree);
+void findMinCostPath(t_node *node, int current_cost, int *min_cost, t_node **min_path, int *path_length,
+                         t_node **current_path, t_move *current_moves, int depth);
 
-////fonctions d'arbre
-//t_tree createTree();
 
-void freeTree(t_tree *tree);
-
-int* availsMinParent(int* list, int size, int val);
-
-//void printTree(t_tree tree);
-
-#endif //UNTITLED1_TREE_H
+#endif //TREE_H

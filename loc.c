@@ -3,6 +3,8 @@
 //
 
 #include "loc.h"
+#include <stdio.h>
+
 
 t_localisation loc_init(int x, int y, t_orientation ori)
 {
@@ -48,5 +50,22 @@ t_position DOWN(t_position pos)
     new_pos.x = pos.x;
     new_pos.y = pos.y + 1;
     return new_pos;
+}
+
+char getOriAsString (t_orientation ori)
+{
+    switch (ori)
+    {
+        case NORTH:
+            return 'N';
+        case EAST:
+            return 'E';
+        case SOUTH:
+            return 'S';
+        case WEST:
+            return 'W';
+        default:
+            return 'X';
+    }
 }
 

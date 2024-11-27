@@ -4,10 +4,15 @@
 
 #ifndef UNTITLED1_QUEUE_H
 #define UNTITLED1_QUEUE_H
+
 #include "loc.h"
+#include <assert.h>
+#include <stdlib.h>
+
 /**
  * @brief Structure for the queue of integers
  */
+
 typedef struct s_queue
 {
     t_position *values;
