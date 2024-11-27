@@ -24,8 +24,8 @@ t_orientation rotate(t_orientation, t_move );
  */
 t_localisation translate(t_localisation , t_move);
 
-/* definition of local functions */
 
+//fonction pour tourner le robot
 t_orientation rotate(t_orientation ori, t_move move)
 {
     int rst;
@@ -46,6 +46,7 @@ t_orientation rotate(t_orientation ori, t_move move)
     return (ori+rst)%4;
 }
 
+//fonction pour translater le robot
 t_localisation translate(t_localisation loc, t_move move)
 {
     /** rules for coordinates:
@@ -134,13 +135,15 @@ t_localisation translate(t_localisation loc, t_move move)
 
 }
 
- /* definition of exported functions */
 
+ //fonction pour obtenir une localisation aléatoire
 char *getMoveAsString(t_move move)
 {
     return _moves[move];
 }
 
+
+//fonction pour mettre à jour la localisation du robot
 t_localisation move(t_localisation loc, t_move move)
 {
     t_localisation new_loc;
@@ -149,12 +152,15 @@ t_localisation move(t_localisation loc, t_move move)
     return new_loc;
 }
 
+
+//fonction pour mettre à jour la localisation du robot
 void updateLocalisation(t_localisation *p_loc, t_move m)
 {
     *p_loc = move(*p_loc, m);
     return;
 }
 
+//fonction pour vériifer si le robot est sur la base
 int isOnBaseStation(t_localisation loc, t_map map)
 {
     if(map.soils[loc.pos.y][loc.pos.x] == BASE_STATION)
@@ -170,8 +176,7 @@ int isOnBaseStation(t_localisation loc, t_map map)
     return 0;
 }
 
-
-
+//fonction pour vérifier si le robot est sur une crevasse
 int isOnCrevasse(t_localisation loc, t_map map) {
     if (map.soils[loc.pos.y][loc.pos.x] == CREVASSE) {
         printf("Robot is on a crevasse\n");

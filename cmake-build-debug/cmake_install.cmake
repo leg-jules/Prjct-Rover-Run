@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/legal/CLionProjects/Prjct-Rover-Run
+# Install script for directory: C:/Users/legal/CLionProjects/Prjct-Rover-Run2
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/legal/CLionProjects/Prjct-Rover-Run/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/legal/CLionProjects/Prjct-Rover-Run2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

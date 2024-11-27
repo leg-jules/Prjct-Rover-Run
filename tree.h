@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+//structure d'un noeud
 typedef struct s_node
 {
     int value;
@@ -24,7 +25,7 @@ typedef struct s_node
 t_move *removeFromList(int *list, t_move value, int len_list);
 t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_localisation loc);
 
-
+//structure d'un arbre
 typedef struct n_tree {
     t_node *root;
 } t_tree;

@@ -86,6 +86,7 @@ t_position UP(t_position);
  */
 t_position DOWN(t_position);
 
+//fonction pour obtenir une orientation en chaine de caractères
 char getOriAsString (t_orientation ori);
 
 #endif //UNTITLED1_LOC_H

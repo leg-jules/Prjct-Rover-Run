@@ -52,10 +52,17 @@ char *getMoveAsString(t_move move);
  * @param move : the move to do
  * @return none
  */
-//void updateLocalisation(t_localisation *, t_move);
 
+//fonction pour mettre à jour la localisation du robot
+void updateLocalisation(t_localisation *, t_move);
+
+//fonction pour obtenir une localisation aléatoire
 int isOnBaseStation(t_localisation loc, t_map map);
+
+//fonction pour vérifier si le robot est sur une crevasse
 int isOnCrevasse(t_localisation loc, t_map map);
+
+//fonction pour obtenir une localisation aléatoire
 t_localisation randomLoc(t_map map);
 
 

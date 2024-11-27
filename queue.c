@@ -12,7 +12,7 @@
  */
 t_queue createQueue(int size)
 {
-    // the size of the queue must be positive
+    // la taille de la file doit être positive
     assert(size > 0);
     t_queue queue;
     queue.size = size;

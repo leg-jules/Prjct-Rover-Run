@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <limits.h>
 
+//fonction pour enlever un élément d'une liste
 t_move *removeFromList(int *list, t_move value, int len_list){
     t_move *new_list = (t_move *)malloc((len_list-1)*sizeof(t_move));
     int index = 0;
@@ -15,6 +16,7 @@ t_move *removeFromList(int *list, t_move value, int len_list){
     return new_list;
 }
 
+//fonction pour créer un noeud
 t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_localisation loc){
     t_node *new_node;
     new_node = (t_node *)malloc(sizeof(t_node));
@@ -34,6 +36,7 @@ t_node *createNode(int val, int mvt, int nd_sons, int* avails, int depth, t_loca
     return new_node;
 }
 
+//fonction pour créer un arbre n-aire
 t_tree createNTree(t_node* node, int depth, t_localisation loc, t_map map) {
     if(node == NULL){
         printf("Node is NULL\n");
@@ -70,8 +73,7 @@ t_tree createNTree(t_node* node, int depth, t_localisation loc, t_map map) {
     return tree;
 }
 
-
-
+//fonction pour ajouter un fils à un noeud
 void printNode(t_node* node, int depth, char* prefix) {
     if (depth >= 4) return;
 
@@ -92,6 +94,7 @@ void printNode(t_node* node, int depth, char* prefix) {
     }
 }
 
+//fonction pour afficher un arbre n-aire
 void printNTree(t_node *node, int depth) {
     printNode(node, depth, "");
 }
@@ -113,6 +116,7 @@ t_node* findMinimumNode(t_node* node) {
     return min_node;
 }
 
+//fonction pour trouver le noeud minimum de l'arbre
 void minimumNode(t_tree tree) {
     if (tree.root == NULL) {
         printf("L'arbre est vide\n");

@@ -28,8 +28,7 @@ void calculateCosts(t_map);
  */
 void removeFalseCrevasses(t_map);
 
-/* definition of local functions */
-
+//fonction pour obtenir la position de la station de base
 t_position getBaseStationPosition(t_map map)
 {
     t_position pos;
@@ -58,6 +57,7 @@ t_position getBaseStationPosition(t_map map)
     }
     return pos;
 }
+
 
 void removeFalseCrevasses(t_map map)
 {
@@ -294,6 +294,7 @@ void displayMap(t_map map)
     return;
 }
 
+//fonction pour créer une carte aléatoire
 t_map createRandomMap(int x_max, int y_max) {
     t_map map;
     map.x_max = x_max;
@@ -343,7 +344,7 @@ t_map createRandomMap(int x_max, int y_max) {
     return map;
 }
 
-void freeMap(t_map map)
+void freeMap(t_map map) // fonction pour libérer la mémoire allouée pour la carte
 {
     for (int i = 0; i < map.y_max; i++)
     {
@@ -356,17 +357,17 @@ void freeMap(t_map map)
     return;
 }
 
-t_localisation randomLoc(t_map map)
+t_localisation randomLoc(t_map map) // fonction pour obtenir une localisation aléatoire
 {
     t_localisation loc;
     loc.pos.x = rand() % map.x_max;
-    loc.pos.y = rand() % map.y_max;
-    loc.ori = rand() % 4;
+    loc.pos.y = rand() % map.y_max;// position aléatoire
+    loc.ori = rand() % 4; // orientation aléatoire
     printf("Random location: x=%d, y=%d, ori=%s\n", loc.pos.x, loc.pos.y, orientation_names[loc.ori]);
     return loc;
 }
 
-void isOutOfMap(t_localisation loc, t_map map)
+void isOutOfMap(t_localisation loc, t_map map) // fonction pour vérifier si le robot est en dehors de la carte
 {
     if (loc.pos.x < 0 || loc.pos.x >= map.x_max || loc.pos.y < 0 || loc.pos.y >= map.y_max)
     {

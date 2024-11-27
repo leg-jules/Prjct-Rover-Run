@@ -30,7 +30,7 @@ int main() {
         }
         printf("\n");
     }
-    // printf the costs, aligned left 5 digits
+
     for (int i = 0; i < map1.y_max; i++)
     {
         for (int j = 0; j < map1.x_max; j++)
